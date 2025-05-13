@@ -1,15 +1,15 @@
 ﻿let digitalRoot n =
-    let rec sumDigits m = 
+    let rec sumDigits m acc =
         match m with
-        | 0 -> 0
-        | _ -> m % 10 + sumDigits (m / 10)
+        | 0 -> acc
+        | _ -> sumDigits (m / 10) (acc + m % 10)
     
-    let rec dr m = 
+    let rec digRoot m = 
         match m < 10 with
         | true -> m
-        | false -> dr (sumDigits m)
+        | false -> digRoot (sumDigits m 0)
     
-    dr n
+    digRoot n
 
 let mdrs n =
     let rec findFactors acc d n =
